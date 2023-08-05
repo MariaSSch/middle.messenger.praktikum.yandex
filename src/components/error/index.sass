@@ -1,0 +1,11 @@
+@use '../../sass/utiles/vars'
+@use '../../sass/utiles/mixins'
+.error
+    text-align: center
+    .error__message
+        @include mixins.primary-title
+        margin-bottom: 40px
+    .error__linkTo
+        font-size: 11px
+        line-height: 11px
+        color: vars.$accentColor

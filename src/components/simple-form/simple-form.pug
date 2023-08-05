@@ -1,0 +1,6 @@
+include ../btn-main/btn-main.pug
+mixin simple-form(formClass, formId, listOfFields, btnValue, labelTitle, inputType, fieldValue)
+    form(class="simple-form" + " " + formClass id=formId)
+        each field in listOfFields
+            +simple-field(labelTitle=labelTitle, inputType=inputType, formId=formId, fieldValue=fieldValue)
+        +btn-main(btnValue) 

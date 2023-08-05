@@ -1,0 +1,56 @@
+@use '../../sass/utiles/vars'
+@use '../../sass/utiles/mixins'
+.chats__footer
+    width: 100%
+    height: 45px
+    border-top: 1px solid vars.$bgAccent
+    padding-top: 10px
+    position: sticky
+    top: calc(100% - 60px)
+    background-color: white
+    .chats__send-form
+        display: flex
+        justify-content: space-between
+        align-items: center
+        position: relative
+        & input[type=file]
+            width: 0
+            height: 0
+        .chats__send-menu
+            display: none
+        .chats__send-menu_shown
+            position: absolute
+            top: -150px
+            display: flex
+            flex-direction: column
+            .chats__send-item:nth-child(2)
+                margin: 15px 0
+            .chats__send-item > span
+                margin-left: 15px
+                font-size: 12px
+                line-height: 14px
+            .chats__send-item > *
+                vertical-align: middle
+        .chats__send-attach
+            position: relative
+            display: flex
+        .chats__send-menu-btn
+            cursor: pointer
+        .chats__send-msg-input
+            background-color: vars.$bgDark
+            border-radius: 20px
+            padding: 10px 15px
+            margin: 0 10px
+            flex-basis: 100%
+            @include mixins.search-field
+            &:placeholder
+                color: vars.$secondaryText
+        .chats__send-msg
+            width: 28px
+            height: 28px
+            border-radius: 50%
+            background-color: vars.$accentColor
+            color: white
+            line-height: 28px
+            font-size: 16px
+            font-weight: 700

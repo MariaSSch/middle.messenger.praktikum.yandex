@@ -1,0 +1,54 @@
+@use '../../sass/utiles/vars'
+@use '../../sass/utiles/mixins'
+.chats__content
+    text-align: center
+    padding: 20px 0 10px
+    .chats__content-date
+        margin-bottom: 20px
+        font-size: 12px
+        line-height: 12px
+        color: vars.$secondaryText
+    .chats__content-messages
+        width: 100%
+        display: flex
+        flex-direction: column
+
+        .chats__message-interlocutor,
+        .chats__message-own
+            max-width: 60%
+            padding: 10px
+            margin-bottom: 10px
+            @include mixins.chat-message(vars.$primaryText)
+            display: flex
+        .chats__message-interlocutor
+            align-self: flex-start
+            border-radius: 10px
+            border: 1px solid vars.$bgAccent
+            text-align: left
+            background-color: white
+
+            .chats__message-time
+                @include mixins.chat-message-time(vars.$secondaryText)
+                align-self: flex-end
+        .chats__message-interlocutor:not(img)
+            background-color: vars.$bgSecondaryMsg
+            border-radius: 0 10px 10px 10px
+            border: none
+        .chats__message-own
+            align-self: flex-end
+            border-radius: 10px
+            border: 1px solid vars.$bgPrimaryMsg
+            text-align: right
+            .chats__message-time
+                @include mixins.chat-message-time(vars.$primaryText)
+                align-self: flex-end
+        .chats__message-own:not(img)
+            background-color: vars.$bgPrimaryMsg
+            border-radius: 10px 10px 0px 10px
+            border: none
+            .chats__message-own-status
+                width: 16px
+                height: 16px
+                margin-left: 8px
+                align-self: flex-end
+

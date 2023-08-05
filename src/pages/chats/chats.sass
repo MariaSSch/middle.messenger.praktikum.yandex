@@ -1,0 +1,53 @@
+@use '../../sass/utiles/vars'
+@use '../../sass/utiles/mixins'
+.chats
+    width: 100vw
+    height: 100%
+    align-self: flex-start
+    display: flex
+    .chats__none
+        color: vars.$secondaryText
+        font-size: 12px
+        line-height: 12px
+        text-align: center
+    .chats__aside
+        width: 22%
+        height: 100%
+        padding: 15px 10px 0
+        background-color: vars.$bgLight
+        position: sticky
+        left: 0
+        top: 0
+        .chats__to-profile
+            text-align: right
+            margin-bottom: 15px
+            .chats__to-profile-link
+                color: vars.$secondaryText
+                font-size: 12px
+        .chats__search
+            width: 100%
+            margin-bottom: 15px
+            position: relative
+            .chats__search-sign
+                position: absolute
+                top: 7px
+                left: calc(50% - 40px) 
+
+            .chats__search-field
+                width: 100%
+                background-color: vars.$bgDark
+                padding: 10px
+                padding-left: 30px
+                border-radius: 5px
+                @include mixins.search-field
+                &:placeholder-shown
+                    color: vars.$secondaryText
+                    text-align: center
+                &:focus + .chats__search-sign
+                    left: 10px
+    .chats__chat-view
+        width: 78%
+        height: 100%
+        padding: 10px 20px
+        .chats__none
+            line-height: 80vh

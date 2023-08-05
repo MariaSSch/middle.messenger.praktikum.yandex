@@ -1,0 +1,50 @@
+@use '../../sass/utiles/vars'
+@use '../../sass/utiles/mixins'
+
+.profile
+    width: 100%
+    display: flex
+    .profile__content
+        width: calc(100% - 64px)
+        display: flex
+        flex-direction: column
+        align-items: center
+        align-self: center
+        .profile__avatar
+            background-color: vars.$bgDark
+            width: 130px
+            height: 130px
+            margin-bottom: 20px
+            cursor: pointer
+            position: relative
+            &:hover::before
+                content: "Поменять аватар"
+                font-size: 13px
+                line-height: 14px
+                color: #fff
+                position: absolute
+                width: 100%
+                height: 100%
+                background-color: rgba(0,0,0,0.5)
+                display: flex
+                align-items: center
+                justify-content: center
+                
+        .profile__user-name
+            @include mixins.chat-names
+        .profile__user-data
+            margin-top: 40px
+            width: 40%
+        .profile__actions
+            width: 40%
+            margin-top: 40px
+            .profile__change-data
+                @include mixins.form-text(vars.$accentColor)
+                padding: 10px 0
+                border-bottom: 1px solid vars.$bgAccent
+                display: block
+            .profile__exit
+                @include mixins.form-text(#ff0000)
+                padding: 10px 0
+                border-bottom: none
+                display: block

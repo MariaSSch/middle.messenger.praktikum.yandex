@@ -1,0 +1,8 @@
+extends ../../pug/includes/pageTemplate.pug
+
+append config 
+    include ../../pug/includes/config.pug
+include ../../components/form/form.pug
+
+append content 
+    +form("login", action, "Войти", fieldsLogin, "Нет аккаунта?", "../registration/index.html")

@@ -1,0 +1,51 @@
+@use '../../sass/utiles/vars'
+label
+    position: relative
+    .input-placeholder
+        position: absolute
+        bottom: 20px
+        left: 0
+        font-family: vars.$mainFont
+        font-weight: 500
+        font-size: 13px
+        line-height: 13px
+        color: vars.$primaryText
+        pointer-events: none
+        transition: all 0.2s ease
+
+    .input
+        width: 280px
+        height: 32px
+        border: none
+        border-bottom: 1px solid vars.$accentColor
+        margin-bottom: 15px
+        padding: 14px 0 5px
+        outline: none
+        font-family: vars.$mainFont
+        font-weight: 500
+        font-size: 13px
+        color: vars.$primaryText
+        transition: all 0.2s ease
+        &:last-child
+            margin-bottom: 40px
+        &:hover
+            background-color: rgba(0, 0, 0, 0.04)
+        &:focus
+            border-bottom: 2px solid #FED100
+            background-color: transparent
+        &:focus + .input-placeholder
+            transform: translate(-10px, -20px) scale(0.7)
+            color: vars.$secondaryText
+        &:not(:placeholder-shown)
+            border-bottom: 2px solid #FED100
+        &:not(:placeholder-shown) + .input-placeholder
+            transform: translate(-10px, -20px) scale(0.7)
+            color: vars.$secondaryText
+    .input-error
+        color: vars.$errorText
+        font-weight: 400
+        font-size: 8px
+        line-height: 8px
+        position: absolute
+        bottom: 0px
+        left: 0

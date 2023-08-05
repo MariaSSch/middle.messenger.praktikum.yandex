@@ -1,0 +1,10 @@
+extends ../../pug/includes/pageTemplate.pug
+
+append config 
+    include ../../pug/includes/config.pug
+
+include ../../components/error/error.pug
+
+append content 
+    +error(404, "Не туда попали", "../chats/index.html", "Назад к чатам")
+

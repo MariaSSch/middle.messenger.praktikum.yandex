@@ -1,0 +1,11 @@
+mixin modal-attach(formId)
+    div(class="modal-container")
+        div(class="modal")
+            h3(class="modal__title modal-attach-title") Загрузите файл
+            form(class="modal__form attach-modal-form" id=formId)
+                label(class="attach-label")
+                    input(type="file" accept="image/*" placeholder=" " class="attach-input" name=fieldName form=formId)
+                    p(class="attach-placeholder") Выбрать файл на компьютере
+                button(type="submit" class="btn-main attach-modal-btn") Поменять
+                p(class="attach-not-chosen") 
+

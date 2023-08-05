@@ -1,0 +1,27 @@
+@use '../../sass/utiles/vars'
+@use '../../sass/utiles/mixins'
+
+.modal__title_error
+    color: vars.$errorText
+.modal__form
+    width: 100%
+    display: flex
+    flex-direction: column
+    align-items: center
+    .attach-label
+        width: 122px
+    input[type="file"]
+        width: 0
+        height: 0
+    .attach-placeholder
+        font-size: 12px
+        line-height: 16px
+        color: vars.$accentColor
+        text-decoration: underline
+    .attach-file
+        font-size: 14px
+        line-height: 16px
+        color: #8d8d8d
+    .attach-not-chosen
+        @include mixins.error-text(500, 11px, 11px)
+        margin-top: 15px

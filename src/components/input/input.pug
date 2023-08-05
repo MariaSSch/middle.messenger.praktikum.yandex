@@ -1,0 +1,6 @@
+mixin input(fieldType, fieldName, formId, placeholder, labelClass)
+    label(class="label" + " " + labelClass)
+        input(type=fieldType placeholder=" " class="input" name=fieldName form=formId)
+        span(class="input-placeholder") #{placeholder}
+        if block 
+            block

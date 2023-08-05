@@ -1,0 +1,65 @@
+@use "./vars"
+@use "./mixins"
+
+.primary-title
+    @include mixins.primary-title
+
+.error__code
+    @include mixins.error-title
+
+.chat-message
+    @include mixins.chat-message(vars.$primaryText)
+
+// modals
+.modal-container
+    background-color: rgba(0,0,0,0.5)
+    width: 100vw
+    height: 100vh
+    position: fixed
+    top: 0
+    display: none
+    justify-content: center
+    align-items: center
+    z-index: 8000
+    .modal
+        width: 340px
+        height: 257px
+        padding: 30px 15px
+        box-shadow: 0px 0px 6px 0px #00000024
+        border-radius: 12px
+        background-color: white
+        text-align: center
+        .modal__title
+            @include mixins.modal-title
+            margin-bottom: 50px
+// forms
+.simple-form 
+    input
+        text-align: right
+    button
+        width: 280px
+        display: block
+        margin: 40px auto
+//pop-up menu
+.pop-up-menu
+    padding: 15px
+    border-radius: 12px
+    box-shadow: 0px 0px 6px 0px #00000024
+    background-color: white
+//link/btn round
+.btn-round, .a-link-round
+    width: 28px
+    height: 28px
+    border-radius: 50%
+    background-color: vars.$accentColor
+    color: white
+    line-height: 28px
+    font-size: 16px
+    font-weight: 700
+    text-align: center
+.link-container
+    display: flex
+    flex-direction: column
+    & > a
+        margin-top: 15px
+        text-decoration: underline

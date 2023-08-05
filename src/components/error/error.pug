@@ -1,0 +1,5 @@
+mixin error(errorCode, message, linkTo, linkMessage)
+    div(class="error")
+        h3(class="error__code") #{errorCode}
+        p(class="error__message") #{message}
+        a(class="error__linkTo" href=linkTo) #{linkMessage}

@@ -1,0 +1,20 @@
+extends ../../pug/includes/pageTemplate.pug
+
+append config 
+    include ../../pug/includes/config.pug
+    include ../../pug/includes/devConfig.pug
+
+include ../../components/profile-aside/profile-aside.pug
+include ../../components/simple-field/simple-field.pug
+include ../../components/btn-main/btn-main.pug
+include ../../components/avatar/avatar.pug
+append content 
+    div(class="profile")
+        +profile-aside("../profile/index.html")
+        div(class="profile__content")
+            +avatar("", "profile__avatar")
+            p(class="profile__user-name") Ivan
+            form(class="simple-form profile__user-data profile__change-form" id="profile-change")
+                each field in userProfile
+                    +simple-field(field.field, field.fieldType, "profile-change", field.value) 
+                +btn-main("Сохранить") 
