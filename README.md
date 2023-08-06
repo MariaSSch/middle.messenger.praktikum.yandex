@@ -9,9 +9,8 @@
   ![Express](https://img.shields.io/badge/Express-eeeeee?style=for-the-badge&logo=Express&logoColor=4a4a4a)
 
 - Команда для сборки и запуска `npm run start`
-<<<<<<< HEAD
 - Сборка и запуск проекта выполняются на 3000 порту
-=======
-- Сборка и запуск проекта выполняются на 3000 порту
+- Хостинг проекта  на `Netlify`
+    свёрстанные страницы:
+    
 
->>>>>>> abe5bc38b8c72e92d39fc06afae8a414faefc525
