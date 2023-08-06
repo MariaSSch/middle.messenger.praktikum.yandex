@@ -5,7 +5,7 @@ mixin chat-header(avatarSrc, name, headerMenu)
             +avatar(avatarSrc, "chats__header-avatar")
             p(class="chats__header-name") #{name}
         div(class="chats__header-expander")
-            img(src="/imgs/expander.png" , alt="expander")
+            img(src="../../../imgs/expander.png" , alt="expander")
             div(class="chats__header-menu pop-up-menu")
                 each position in headerMenu
                     div(class="chats__header-menu-item")
