@@ -27,3 +27,5 @@ export const chatModalVariables = [
 export const attachVariables = {
     errorClass: "modal__title_error"
 }
+
+

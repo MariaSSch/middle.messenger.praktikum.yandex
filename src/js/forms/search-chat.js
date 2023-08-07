@@ -1,5 +1,4 @@
 const searchForm = document.getElementById("search");
-const searchInput = searchForm.search;
 
 //from pug-file
 var chatList = [
@@ -25,15 +24,19 @@ var chatList = [
     },
 ]
 
-searchForm.addEventListener("input", (e) => {
-    e.preventDefault();
-    const value = e.target.value;
-    if(chatList.length === 0) {
-        const noChatsMsg = document.querySelector("chats__none");
-        noChatsMsg.textContent = "Сначала кого-нибудь пригласите"
-    } else {
+if(searchForm) {
+    const searchInput = searchForm.search;
+
+    searchForm.addEventListener("input", (e) => {
+        e.preventDefault();
+        const value = e.target.value;
         chatList = chatList.filter(chat => chat.name.startsWith(value))
-    }
-    console.log(chatList);
-    //render new chatList
-})
+        if(chatList.length === 0) {
+            const noChatsMsg = document.querySelector(".chats__list");
+            noChatsMsg.textContent = "Такого разговора нет"
+        } 
+        console.log(chatList);
+        //render new chatList
+    })
+    
+}

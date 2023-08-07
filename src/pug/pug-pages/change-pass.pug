@@ -15,5 +15,5 @@ append content
             +avatar("", "profile__avatar")
             form(class="simple-form profile__user-data profile__change-pass-form" id="pass-change")
                 each field in fieldsChangePass
-                    +simple-field(field.label, field.fieldType, "pass-change", field.value)
+                    +simple-field(field.label, field.fieldType, field.fieldName, "pass-change", field.value)
                 +btn-main("Сохранить")
