@@ -16,5 +16,6 @@ append content
             p(class="profile__user-name") Ivan
             form(class="simple-form profile__user-data profile__change-form" id="profile-change")
                 each field in userProfile
-                    +simple-field(field.field, field.fieldType, "profile-change", field.value) 
+                    +simple-field(field.label, field.fieldType, field.fieldName, "profile-change", field.value) 
                 +btn-main("Сохранить") 
+

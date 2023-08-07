@@ -32,12 +32,21 @@ for(let i = 0; i < menuItems.length; i++) {
 }
 
 //COMMON rules for all modals
-modal.addEventListener('click', (e) => e.stopPropagation()); 
 
-modalBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    modalContainer.style.display = "none";
-} ); 
-modalContainer.addEventListener('click', () => {
-    modalContainer.style.display = "none";
-} )
+if(modal) {
+    modal.addEventListener('click', (e) => e.stopPropagation()); 
+
+}
+if(modalBtn) {
+    modalBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        modalContainer.style.display = "none";
+    } ); 
+}
+
+if(modalContainer) {
+    modalContainer.addEventListener('click', () => {
+        modalContainer.style.display = "none";
+    } )
+    
+}

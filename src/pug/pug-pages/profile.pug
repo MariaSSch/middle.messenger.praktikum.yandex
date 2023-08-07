@@ -17,9 +17,10 @@ append content
             div(class="profile__user-data")
                 each field in userProfile 
                     div(class="profile__fields")
-                        p(class="profile__field") #{field.field}
+                        p(class="profile__field") #{field.label}
                         p(class="profile__field-value") #{field.value}
-            div(class="profile__actions")
-                a(href="../change-profile/index.html" class="profile__change-data") Изменить данные 
-                a(href="../change-pass/index.html" class="profile__change-data") Изменить пароль 
-                a(href="../chats/index.html" class="profile__exit") Выйти 
+            nav(class="profile__actions")
+                ul
+                    li: a(href="../change-profile/index.html" class="profile__change-data") Изменить данные 
+                    li: a(href="../change-pass/index.html" class="profile__change-data") Изменить пароль 
+                    li: a(href="../chats/index.html" class="profile__exit") Выйти
