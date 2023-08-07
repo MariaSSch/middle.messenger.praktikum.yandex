@@ -10,7 +10,8 @@ const modalState = document.querySelector(".attach-placeholder");
 const modalInput = document.querySelector(".attach-input");
 const modalBlock = document.querySelector(".attach-not-chosen");
 
-function modifyAttachModal() {
+function modifyAttachModal(e) {
+    e.preventDefault();
     const modalTitle = document.querySelector(".modal-attach-title");
     if(modalTitle.textContent === "Ошибка, попробуйте ещё раз") {
         modalTitle.classList.add("modal__title_error");
@@ -24,22 +25,29 @@ function modifyAttachModal() {
     }
 }
 
-
-changeAvatar.addEventListener('click', () => {
+function displayModalContainer() {
     modalContainer.style.display = "flex";
-} );
+}
 
-modalForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    modifyAttachModal();
+if(changeAvatar) {
+    changeAvatar.addEventListener('click', displayModalContainer);
+}
 
-})
+if(modalForm) {
+    modalForm.addEventListener("submit", modifyAttachModal);
+
+}
 
 
 //COMMON rules for all modals
-modal.addEventListener('click', (e) => e.stopPropagation()); 
+if(modal) {
+    modal.addEventListener('click', (e) => e.stopPropagation()); 
 
-modalContainer.addEventListener('click', () => {
-    modalContainer.style.display = "none";
-} )
+}
+if(modalContainer) {
+    modalContainer.addEventListener('click', () => {
+        modalContainer.style.display = "none";
+    } )
+    
+}
 

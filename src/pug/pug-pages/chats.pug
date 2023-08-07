@@ -15,12 +15,12 @@ append content
 
     div(class="chats")
         div(class="chats__aside")
-            div(class="chats__to-profile")
+            nav(class="chats__to-profile")
                 a(class="chats__to-profile-link" href="../profile/index.html") Профиль &gt;
 
             form(class="chats__search" metod="get" id="search")
                 input(type="search" name="search" class="chats__search-field" placeholder="Поиск")
-                img(src="/imgs/search_sign.png" class="chats__search-sign")
+                img(src="../../../imgs/search_sign.png" class="chats__search-sign")
 
             div(class="chats__list")
                 if(chatList.length === 0)

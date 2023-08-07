@@ -54,34 +54,41 @@
 - 
     var userProfile = [
         {
-            field: "Почта",
+            label: "Почта",
             value: "pochta@yandex.ru",
-            fieldType: "email"
+            fieldType: "email",
+            fieldName: "email"
+
         },
         {
-            field: "Логин",
+            label: "Логин",
             value: "ivanivanov",
-            fieldType: "text"
+            fieldType: "text",
+            fieldName: "login"
         },
         {
-            field: "Имя",
+            label: "Имя",
             value: "Ivan",
-            fieldType: "text"
+            fieldType: "text",
+            fieldName: "first_name"
         },
         {
-            field: "Фамилия",
+            label: "Фамилия",
             value: "Иванов",
-            fieldType: "text"
+            fieldType: "text",
+            fieldName: "second_name"
         },
         {
-            field: "Имя в чате",
+            label: "Имя в чате",
             value: "Иван",
-            fieldType: "text"
+            fieldType: "text",
+            fieldName: "display_name"
         },
         {
-            field: "Телефон",
+            label: "Телефон",
             value: "+7(909)967 30 30",
-            fieldType: "phone"
+            fieldType: "phone",
+            fieldName: "phone"
         }
 
     ]
@@ -91,17 +98,20 @@
         {
             label: "Старый пароль",
             fieldType: "password",
-            value: "123456"
+            value: "123456",
+            fieldName: "password"
         },
         {
             label: "Новый пароль",
             fieldType: "password",
-            value: "ffff"
+            value: "ffff",
+            fieldName: "password"
         },
         {
             label: "Повторите новый пароль",
             fieldType: "password",
-            value: "ffff"
+            value: "ffff",
+            fieldName: "password"
         }
     ]
 
