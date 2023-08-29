@@ -1,10 +1,9 @@
-mixin chat-content(date="19 мая", interlocutorMsg, ownMsg, msgTime="10:34")
-    div(class="chats__content")
-        p(class="chats__content-date") #{date}
-        div(class="chats__content-messages")
-            p(class="chats__message-interlocutor") #{interlocutorMsg}
-                span(class="chats__message-time") #{msgTime}
-            img(src="/imgs/photo1.png" class="chats__message-interlocutor")
-            p(class="chats__message-own") #{ownMsg}
-                img(src="/imgs/double_tick.png" class="chats__message-own-status")
-                span(class="chats__message-time") #{msgTime}
+div(class="chats__content")
+	p(class="chats__content-date") #{date}
+	div(class="chats__content-messages")
+		p(class="chats__message-interlocutor") #{interlocutorMsg}
+			span(class="chats__message-time") #{msgTime}
+		img(src="/imgs/photo1.png" class="chats__message-interlocutor")
+		p(class="chats__message-own") #{ownMsg}
+			img(src="/imgs/double_tick.png" class="chats__message-own-status")
+			span(class="chats__message-time") #{msgTime}

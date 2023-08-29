@@ -1,3 +1,2 @@
-mixin avatar(avatarSrc, avatarClass)
-    div(class="avatar" + " " + avatarClass)
-        img(src=avatarSrc? avatarSrc:"../../../imgs/avatar_cap.webp" , alt="avatar")
+div(class="avatar" + " " + avatarClass)
+	img(src= avatarSrc ? avatarSrc : "/imgs/avatar_cap.webp" , alt="avatar")

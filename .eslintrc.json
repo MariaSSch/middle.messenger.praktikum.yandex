@@ -1,0 +1,23 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint"],
+    "extends": ["airbnb", "eslint:recommended", "plugin:@typescript-eslint/recommended"],
+    "rules": {
+      "quotes": ["error", "double", {"avoidEscape": true, "allowTemplateLiterals": true}],
+			"linebreak-style": "off",
+			"no-multiple-empty-lines": ["error", {"max": 2, "maxEOF": 1}],
+			"no-console": "off",
+			"no-spaced-func": "off",
+			"func-call-spacing": "off",
+			"indent": ["error", "tab"],
+			"import/no-extraneous-dependencies": ["error", {
+				"devDependencies": false, 
+				"packageDir": "./"
+				}
+			],
+			"spaced-comment": "off",
+			"no-plusplus": "off",
+			"no-tabs": ["error", { "allowIndentationTabs": true }]
+    },
+    "root": true
+  }
