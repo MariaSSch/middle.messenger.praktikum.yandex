@@ -96,7 +96,6 @@ class Block {
 	}
 
 	protected init() {} 
-
 	_componentDidMount() { 
 		this.componentDidMount();
 	}

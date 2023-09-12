@@ -1,5 +1,6 @@
 import Block from "../../js/block";
 import template from "./input.pug";
+// import { fieldValidation } from "../../js/utils/form-validation";
 
 interface InputProps {
 	fieldType: string;
@@ -7,9 +8,10 @@ interface InputProps {
 	formId: string;
 	placeholder: string;
 	inputErrorMsg?: string;
-	onBlur?: () => void;
+	fieldPattern: string;
+	onBlur?: (e: Event) => void;
 	events?: {
-		blur: () => void;
+		focusout: (e: Event) => void;
 	}
 };
 

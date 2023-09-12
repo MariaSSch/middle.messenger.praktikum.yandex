@@ -18,7 +18,7 @@ export class Profile extends Block {
 		});
 		this.children.avatar = new Avatar({
 			avatarClass: "profile__avatar",
-			// avatarSrc: "",
+			avatarSrc: "",
 		});
 		this.children.fieldEmail = new SimpleFiled({
 			fieldTitle: userProfile[0].label,

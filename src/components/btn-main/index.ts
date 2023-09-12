@@ -3,7 +3,8 @@ import template from "./btn-main.pug";
 
 interface BtnMainProps {
 	text: string;
-	onSubmit: (e: Event) => void;
+	btnMainClass?: string;
+	onSubmit?: (e: Event) => void;
 	events: {
 		submit: (e: Event) => void,
 	}

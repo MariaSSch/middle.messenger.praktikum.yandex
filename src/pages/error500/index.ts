@@ -12,7 +12,7 @@ export class Error500 extends Block {
 		this.children.error500 = new Error({
 			errorCode: "500",
 			message: "Мы уже фиксим",
-			link: "chats",
+			toPage: "chats",
 			linkMessage: "Назад к чатам",
 		});
 	}

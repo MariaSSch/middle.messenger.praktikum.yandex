@@ -33,7 +33,7 @@ export const userProfile = [
 	{
 		label: "Телефон",
 		value: "+7(909)967 30 30",
-		fieldType: "phone",
+		fieldType: "tel",
 		fieldName: "phone"
 	}
 

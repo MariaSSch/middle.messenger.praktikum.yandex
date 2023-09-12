@@ -7,7 +7,6 @@ import { ChangePass } from "../pages/change-pass";
 import { ChangeProfile } from "../pages/change-profile";
 import { MainPage } from "../pug";
 import { Chats } from "../pages/chats";
-import { PopupHeader } from "../components/popup-header";
 import { PopupFooter } from "../components/popup-footer";
 
 const ROUTES = {

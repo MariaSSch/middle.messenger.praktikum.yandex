@@ -6,7 +6,7 @@ import template from "./error.pug";
 interface ErrorProps {
 	errorCode: string;
 	message: string;
-	link?: string;
+	toPage: string;
 	linkMessage: string;
 }
 
@@ -18,7 +18,7 @@ export class Error extends Block {
 		this.children.link = new Link({
 			text: this.props.linkMessage as string,
 			linkClass: "error__linkTo",
-			onClick: () => render(this.props.link as any),
+			onClick: () => render(this.props.toPage as any),
 			events: {
 				click: () => this.props.onClick,
 			}
