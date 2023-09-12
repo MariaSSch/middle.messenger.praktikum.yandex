@@ -9,20 +9,14 @@ interface InputProps {
 	placeholder: string;
 	inputErrorMsg?: string;
 	fieldPattern: string;
-	onBlur?: (e: Event) => void;
 	events?: {
-		focusout: (e: Event) => void;
+		focusout?: (e: Event) => void,
 	}
 };
 
 export class Input extends Block {
 	constructor(props: InputProps) {
-		super({
-			...props,
-		events: {
-			blur: props.onBlur,
-		}
-	});
+		super(props);
 	}
 
 	render() {

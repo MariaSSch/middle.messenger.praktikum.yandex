@@ -1,51 +1,81 @@
-import { chatModalVariables, modalContainer, modal } from "../vars.ts";
+function modalElements () {
+	const modal = document.querySelector(".modal")  as HTMLElement;
+	const modalContainer = document.querySelector(".modal-container") as HTMLElement;
 
-//chat menu items to click
-const menuItems = document.querySelectorAll(".chats__header-menu-item");
-//chat. title of modal window
-const modalTitle = document.querySelector(".chat-modal-title");
-//chat. modal form
-const modalForm = document.querySelector(".chat-modal-form");
-//chat. label (to remove before append additional block)
-const modalLabel = document.querySelector(".chat-modal-label");
-const modalBtn = document.querySelector(".chat-modal-btn");
-
-//CHAT modals rules
-function modifyChatModal(title: string, formId: string, btnValue: string, block: string) {
-	(modalTitle as HTMLElement).textContent = title;
-	(modalForm as HTMLFormElement).setAttribute("id", formId);
-	(modalBtn as HTMLElement).textContent = btnValue;
-	if ((modalTitle as HTMLElement).textContent === "Удалить чат") {
-		(modalLabel as HTMLElement).remove();
-		(modalForm as HTMLFormElement).insertAdjacentHTML("afterbegin", block);
+	//chat. title of modal window
+	const modalTitle = document.querySelector(".chat-modal-title") as HTMLElement;
+	//chat. modal form
+	const modalForm = document.querySelector(".chat-modal-form") as HTMLFormElement;
+	//chat. label (to remove before append additional block)
+	const modalLabel = document.querySelector(".chat-modal-label") as HTMLElement;
+	const modalBtn = document.querySelector(".chat-modal-btn")  as HTMLElement;
+	return {
+		modalContainer,
+		modal,
+		modalTitle, 
+		modalForm, 
+		modalLabel, 
+		modalBtn
 	}
 }
 
-for (let i = 0; i < menuItems.length; i++) {
-	menuItems[i].addEventListener("click", () => {
-		(modalContainer as HTMLElement).style.display = "flex";
-		modifyChatModal(
-			chatModalVariables[i].title,
-			chatModalVariables[i].formId,
-			chatModalVariables[i].btnValue,
-			(chatModalVariables[2].block as string),
-		);
-	});
-}
-
-//COMMON rules for all modals
-
-if (modal) {
+export function modalAddUser() {
+	
+	const {modalContainer, modal, modalTitle, modalForm, modalBtn} = modalElements()
+	
+	modalContainer.style.display = "flex";
+	modalTitle.textContent = "Добавить пользователя";
+	modalForm.setAttribute("id", "add-user");
+	modalBtn.textContent = "Добавить";
+	
 	modal.addEventListener("click", (e) => e.stopPropagation());
-}
-if (modalBtn) {
+	
 	modalBtn.addEventListener("click", (e) => {
 		e.preventDefault();
+		modalContainer.style.display = "none";
+	});
+	modalContainer.addEventListener("click", () => {
 		(modalContainer as HTMLElement).style.display = "none";
 	});
 }
 
-if (modalContainer) {
+export function modalDeleteUser() {
+
+	const {modalContainer, modal, modalTitle, modalForm, modalBtn} = modalElements()
+
+	modalContainer.style.display = "flex";
+	modalTitle.textContent = "Удалить пользователя";
+	modalForm.setAttribute("id", "delete-user");
+	modalBtn.textContent = "Удалить";
+	
+	modal.addEventListener("click", (e) => e.stopPropagation());
+	modalBtn.addEventListener("click", (e) => {
+		e.preventDefault();
+		modalContainer.style.display = "none";
+	});
+	modalContainer.addEventListener("click", () => {
+		(modalContainer as HTMLElement).style.display = "none";
+	});
+
+}
+
+export function modalDeleteChat() {
+
+	const {modalContainer, modal, modalTitle, modalForm, modalLabel, modalBtn} = modalElements()
+
+	modalContainer.style.display = "flex";
+	modalTitle.textContent = "Удалить чат";
+	modalForm.setAttribute("id", "delete-chat");
+	modalBtn.textContent = "Удалить";
+	const block: string = `<p class="modal-block"> Вы уверены, что хотите удалить чат?</p>`;
+	modalLabel.remove();
+	modalForm.insertAdjacentHTML("afterbegin", block);
+	
+	modal.addEventListener("click", (e) => e.stopPropagation());
+	modalBtn.addEventListener("click", (e) => {
+		e.preventDefault();
+		modalContainer.style.display = "none";
+	});
 	modalContainer.addEventListener("click", () => {
 		(modalContainer as HTMLElement).style.display = "none";
 	});

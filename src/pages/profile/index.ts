@@ -6,6 +6,8 @@ import { userProfile } from "../../js/utils/user-profile";
 import { SimpleFiled } from "../../components/simple-field";
 import { Link } from "../../components/link";
 import { render } from "../../js/render";
+import { ModalAttach } from "../../components/modal-attach";
+import { displayModalContainer } from "../../js/modals/modals-change-avatar";
 
 export class Profile extends Block {
 	constructor() {
@@ -19,6 +21,10 @@ export class Profile extends Block {
 		this.children.avatar = new Avatar({
 			avatarClass: "profile__avatar",
 			avatarSrc: "",
+			onClick: () => displayModalContainer(),
+			events: {
+				click: () => this.props.onClick,
+			}
 		});
 		this.children.fieldEmail = new SimpleFiled({
 			fieldTitle: userProfile[0].label,
@@ -71,7 +77,10 @@ export class Profile extends Block {
 			}
 		
 		});
-
+		this.children.modalAttach = new ModalAttach({
+			formId: "attach-modal",
+			fieldName: "avatar-file",
+		});
 	}
 
 	render() {

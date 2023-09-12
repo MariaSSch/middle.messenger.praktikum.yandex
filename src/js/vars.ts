@@ -1,6 +1,6 @@
 //define modal window
-export const modalContainer = document.querySelector(".modal-container");
-export const modal = document.querySelector(".modal");
+export const modalContainer = document.querySelector(".modal-container") as HTMLElement;
+export const modal = document.querySelector(".modal")  as HTMLElement;
 
 //chat. vars to modify modal
 

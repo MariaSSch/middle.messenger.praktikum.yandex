@@ -6,6 +6,7 @@ import { Link } from "../../components/link";
 import { render } from "../../js/render";
 import Block from "../../js/block";
 import template from "./chats.pug";
+import { ModalInput } from "../../components/modal-input";
 
 interface ChatsProps {
 	chatListLength: number;
@@ -54,9 +55,6 @@ export class Chats extends Block {
 			avatarSrc: "https://imgaz.staticbg.com/customers_avatars/20181219104152_503.jpg",
 			src: "string;,",
 			descr: "string;",
-			events: {
-				click: () => console.log("click")
-			}
 		});
 		this.children.chatContent = new ChatContent({
 			date: "19 мая",
@@ -64,7 +62,8 @@ export class Chats extends Block {
 			msgTime: "10:54",
 			ownMsg: "Круто!",
 		});
-		this.children.chatFooter = new ChatFooter ();
+		this.children.chatFooter = new ChatFooter();
+		this.children.modalHeader = new ModalInput();
 	}
 	render() {
 		return this.compile(template, this.props);

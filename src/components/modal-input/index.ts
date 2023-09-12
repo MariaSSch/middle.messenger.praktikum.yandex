@@ -2,15 +2,9 @@ import Block from "../../js/block";
 import { BtnMain } from "../btn-main";
 import template from "./modal-input.pug";
 
-interface ModalInputProps {
-	modalTitle: string;
-	formId: string;
-	fieldName: string;
-	btnValue: string;
-}
 export class ModalInput extends Block {
-	constructor(props: ModalInputProps) {
-		super(props);
+	constructor() {
+		super();
 	}
 	init() {
 		this.children.btnMain = new BtnMain({

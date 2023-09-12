@@ -25,8 +25,10 @@ function modifyAttachModal(e: Event) {
 	}
 }
 
-function displayModalContainer() {
+export function displayModalContainer() {
+	console.log("modal");
 	(modalContainer as HTMLElement).style.display = "flex";
+	
 }
 
 if (changeAvatar) {

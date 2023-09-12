@@ -12,12 +12,7 @@ interface BtnMainProps {
 
 export class BtnMain extends Block {
 	constructor(props: BtnMainProps) {
-		super({
-			...props,
-		events: {
-			submit: props.onSubmit,
-		}
-	});
+		super(props);
 	}
 
 	render() {

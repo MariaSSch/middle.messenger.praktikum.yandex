@@ -28,7 +28,6 @@ export class FormLogin extends Block {
 			formId: "login-form",
 			placeholder: fieldsLogin[0].placeholder,
 			fieldPattern: "/^[a-zA-Z]([a-zA-Z0-9_]){3,20}$/gi",
-			onBlur: (e: Event) => fieldValidation(e),
 			events: {
 				focusout: function (e: Event) {fieldValidation(e)},
 			},
@@ -40,9 +39,7 @@ export class FormLogin extends Block {
 			placeholder: fieldsLogin[1].placeholder,
 			fieldPattern: "/^(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,40}$/g",
 			events: {
-				focusout: () => {
-					console.log("blur");
-					},
+				focusout: function (e: Event) {fieldValidation(e)},
 			},
 
 		});
