@@ -6,7 +6,7 @@ import { Link } from "../../components/link";
 import { render } from "../../js/render";
 import Block from "../../js/block";
 import template from "./chats.pug";
-import { ModalInput } from "../../components/modal-input";
+import { FormInput } from "../../components/form-input";
 
 interface ChatsProps {
 	chatListLength: number;
@@ -29,6 +29,14 @@ export class Chats extends Block {
 			events: {
 				click: () => this.props.onClick,
 			}
+		});
+		this.children.formSearch = new FormInput({
+			className: "chats__search",
+			formId: "search",
+			fieldType: "search",
+			name: "search",
+			placeholder: "Поиск",
+			fieldClassName: "chats__search-field",
 		});
 		this.children.chatOne = new Chat({
 			avatarSrc: "https://imgaz.staticbg.com/customers_avatars/20181219104152_503.jpg",
@@ -63,7 +71,6 @@ export class Chats extends Block {
 			ownMsg: "Круто!",
 		});
 		this.children.chatFooter = new ChatFooter();
-		this.children.modalHeader = new ModalInput();
 	}
 	render() {
 		return this.compile(template, this.props);

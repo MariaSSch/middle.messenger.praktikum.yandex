@@ -2,8 +2,7 @@ div(class="chats")
 	div(class="chats__aside")
 		nav(class="chats__to-profile")
 			#{link}
-		form(class="chats__search" metod="get" id="search")
-			input(type="search" name="search" class="chats__search-field" placeholder="Поиск")
+		#{formSearch}
 			img(src="/imgs/search_sign.png" class="chats__search-sign")
 		div(class="chats__list")
 			if (chatListLength === 0)
@@ -19,4 +18,3 @@ div(class="chats")
 			#{chatFooter}
 		else 
 			p(class="chats__none") Выберите чат чтобы отправить сообщение
-	#{modalHeader}

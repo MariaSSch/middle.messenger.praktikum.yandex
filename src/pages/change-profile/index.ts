@@ -4,7 +4,7 @@ import { ModalAttach } from "../../components/modal-attach";
 import { ProfileAside } from "../../components/profile-aside";
 import Block from "../../js/block";
 import template from "./change-profile.pug";
-import { displayModalContainer } from "../../js/modals/modals-change-avatar";
+
 export class ChangeProfile extends Block{
 	constructor() {
 		super();
@@ -15,17 +15,22 @@ export class ChangeProfile extends Block{
 			toPage: "profile"
 		});
 		this.children.avatar = new Avatar({
-			avatarClass: "profile__avatar",
+			avatarClass: "profile__avatar  profile__avatar_active",
 			// avatarSrc: "",
-			onClick: () => displayModalContainer(),
+			onClick: () => {
+				this.children.modalAttach.show("flex")
+			},
 			events: {
 				click: () => this.props.onClick,
 			}
 		});
 		this.children.formChangeProfile = new FormChangeProfile();
+		
 		this.children.modalAttach = new ModalAttach({
-			formId: "attach-modal",
-			fieldName: "avatar-file",
+			onClick: () => this.children.modalAttach.hide(),
+			events: {
+				click: () => this.props.onClick
+			}
 		});
 	}
 	render() {

@@ -175,12 +175,18 @@ class Block {
 		});
 	}
 
-	show() {
-		this.getContent()!.style.display = "block";
+	show(display: string) {
+		this.getContent()!.style.display = display;
 	}
 
 	hide() {
 		this.getContent()!.style.display = "none";
+	}
+
+	
+	public getValue(): string {
+		const input = this.getElement()?.querySelector("input") as HTMLInputElement;
+		return input.value;
 	}
 }
 

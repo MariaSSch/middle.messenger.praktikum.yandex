@@ -1,7 +1,7 @@
 const searchForm = document.getElementById("search");
 
 /*from pug-file*/
-let chatList = [
+export let chatList = [
 	{
 		avatarSrc: "https://imgaz.staticbg.com/customers_avatars/20181219104152_503.jpg",
 		name: "Alex",

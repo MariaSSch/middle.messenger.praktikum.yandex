@@ -1,24 +1,24 @@
 import Block from "../../js/block";
-import { BtnMain } from "../btn-main";
+import { FormModalAttach } from "../form-modal-attach";
+import { Modal } from "../modal";
 import template from "./modal-attach.pug";
 
 interface ModalAttachProps {
-	formId: string;
-	fieldName: string;
+	onClick: () => void;
+	events: {
+		click: () => void,
+	};
 }
 export class ModalAttach extends Block {
 	constructor(props: ModalAttachProps) {
-		super(props);
+		super({...props,
+			events: {
+				click: props.onClick
+			}});
 	}
 	init() {
-		this.children.btnMain = new BtnMain({
-			text: "Поменять",
-			btnMainClass: "attach-modal-btn",
-			onSubmit: (e) => e.preventDefault(),
-			events: {
-				submit: () => this.props.onClick,
-			}
-				})
+		this.children.modal = new Modal();
+		this.children.formModalAttach = new FormModalAttach();
 	}
 	render() {
 		return this.compile(template, this.props);

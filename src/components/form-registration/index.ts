@@ -5,7 +5,7 @@ import { BtnMain } from "../btn-main";
 import { fieldsRegistration } from "../../js/utils/registration-page-fields"
 import { Link } from "../link";
 import { render } from "../../js/render";
-import { fieldValidation } from "../../js/utils/form-validation";
+import * as validate from "../../js/utils/form-validation";
 
 interface FormProps {
 	formId: string;
@@ -15,7 +15,29 @@ interface FormProps {
 
 export class FormRegistration extends Block {
 	constructor(props: FormProps) {
-		super(props);
+		super({...props,
+			events: {
+				submit: (e: Event) => {
+					e.preventDefault();
+					const email = this.children.inputE.getValue();
+					const login = this.children.inputL.getValue();
+					const name = this.children.inputN.getValue();
+					const lastName = this.children.inputS.getValue();
+					const phone = this.children.inputT.getValue();
+					const pass = this.children.inputP.getValue();
+					const pass2 = this.children.inputP2.getValue();
+					
+					console.log({
+						email,
+						login,
+						name,
+						lastName,
+						phone,
+						pass,
+						pass2
+					})
+				}
+			}});
 	}
 
 	init() {
@@ -25,9 +47,9 @@ export class FormRegistration extends Block {
 			fieldName: fieldsRegistration[0].name,
 			formId: "registration",
 			placeholder: fieldsRegistration[0].placeholder,
-			fieldPattern: "/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/gi",
+			fieldPattern: "/^[A-Z0-9.\-_]+@[A-Z0-9]+.+.[A-Z]{2,4}$/i",
 			events: {
-				focusout: function (e: Event) {fieldValidation(e)},
+				focusout: function (e: Event) {validate.isEmailValid(e)},
 			},
 
 		});
@@ -38,7 +60,7 @@ export class FormRegistration extends Block {
 			placeholder: fieldsRegistration[1].placeholder,
 			fieldPattern: "/^[a-zA-Z]([a-zA-Z0-9_]){3,20}$/gi",
 			events: {
-				focusout: function (e: Event) {fieldValidation(e)},
+				focusout: function (e: Event) {validate.isLoginValid(e)},
 			},
 
 		});
@@ -47,9 +69,9 @@ export class FormRegistration extends Block {
 			fieldName: fieldsRegistration[2].name,
 			formId: "registration",
 			placeholder: fieldsRegistration[2].placeholder,
-			fieldPattern: "/^[A-ZА-Я-][a-zа-я-]+/g",
+			fieldPattern: "/^[A-ZА-Я\\-][a-zа-я\\-]+/g",
 			events: {
-				focusout: function (e: Event) {fieldValidation(e)},
+				focusout: function (e: Event) {validate.isNameValid(e)},
 			},
 
 		});
@@ -58,9 +80,9 @@ export class FormRegistration extends Block {
 			fieldName: fieldsRegistration[3].name,
 			formId: "registration",
 			placeholder: fieldsRegistration[3].placeholder,
-			fieldPattern: "/^[A-ZА-Я-][a-zа-я-]+/g",
+			fieldPattern: "/^[A-ZА-Я][a-zа-я]+/g",
 			events: {
-				focusout: function (e: Event) {fieldValidation(e)},
+				focusout: function (e: Event) {validate.isNameValid(e)},
 			},
 
 		});
@@ -69,9 +91,9 @@ export class FormRegistration extends Block {
 			fieldName: fieldsRegistration[4].name,
 			formId: "registration",
 			placeholder: fieldsRegistration[4].placeholder,
-			fieldPattern: "/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{10,15}$/gi",
+			fieldPattern: `^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/g`,
 			events: {
-				focusout: function (e: Event) {fieldValidation(e)},
+				focusout: function (e: Event) {validate.isPhoneValid(e)},
 			},
 
 		});
@@ -82,7 +104,7 @@ export class FormRegistration extends Block {
 			placeholder: fieldsRegistration[5].placeholder,
 			fieldPattern: "/^(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,40}$/g",
 			events: {
-				focusout: function (e: Event) {fieldValidation(e)},
+				focusout: function (e: Event) {validate.isPassValid(e)},
 			},
 
 		});
@@ -93,7 +115,7 @@ export class FormRegistration extends Block {
 			placeholder: fieldsRegistration[6].placeholder,
 			fieldPattern: "/^(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,40}$/g",
 			events: {
-				focusout: function (e: Event) {fieldValidation(e)},
+				focusout: function (e: Event) {validate.isPassValid(e)},
 			},
 
 		});

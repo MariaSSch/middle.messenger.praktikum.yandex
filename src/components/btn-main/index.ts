@@ -5,9 +5,9 @@ interface BtnMainProps {
 	text: string;
 	btnMainClass?: string;
 	onSubmit?: (e: Event) => void;
-	events: {
-		submit: (e: Event) => void,
-	}
+	events?: {
+		submit: () => void,
+	};
 }
 
 export class BtnMain extends Block {

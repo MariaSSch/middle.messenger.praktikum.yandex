@@ -5,7 +5,7 @@ import { BtnMain } from "../btn-main";
 import { fieldsLogin } from "../../js/utils/login-page-fields"
 import { Link } from "../link";
 import { render } from "../../js/render";
-import { fieldValidation } from "../../js/utils/form-validation";
+import * as validate from "../../js/utils/form-validation";
 
 
 interface FormProps {
@@ -16,7 +16,20 @@ interface FormProps {
 
 export class FormLogin extends Block {
 	constructor(props: FormProps) {
-		super({props});
+		super({...props,
+			events: {
+				submit: (e: Event) => {
+					e.preventDefault();
+					const login = this.children.inputL.getValue();
+					const password = this.children.inputP.getValue();
+					console.log({login, password});
+					if (validate.isFormValid(e)) {
+					console.log({login, password});
+					}
+					return;
+				}
+			},
+		});
 
 	}
 
@@ -29,7 +42,7 @@ export class FormLogin extends Block {
 			placeholder: fieldsLogin[0].placeholder,
 			fieldPattern: "/^[a-zA-Z]([a-zA-Z0-9_]){3,20}$/gi",
 			events: {
-				focusout: function (e: Event) {fieldValidation(e)},
+				focusout: function (e: Event) {validate.isLoginValid(e)},
 			},
 		});
 		this.children.inputP = new Input({
@@ -39,7 +52,7 @@ export class FormLogin extends Block {
 			placeholder: fieldsLogin[1].placeholder,
 			fieldPattern: "/^(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,40}$/g",
 			events: {
-				focusout: function (e: Event) {fieldValidation(e)},
+				focusout: function (e: Event) {validate.isPassValid(e)},
 			},
 
 		});

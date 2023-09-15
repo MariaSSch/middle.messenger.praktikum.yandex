@@ -4,6 +4,9 @@ import { Avatar } from "../avatar";
 import { ImgPopup } from "../img-popup";
 import { PopupHeader } from "../popup-header";
 import template from "./chat-header.pug";
+import { ModalInput } from "../modal-input";
+import { modalDeleteChat } from "../../js/modals/modals-chat-menu";
+import { ModalDelChat } from "../modal-del-chat";
 
 interface ChatHeaderProps {
 	name: string;
@@ -32,6 +35,31 @@ export class ChatHeader extends Block {
 			}
 		})
 		this.children.popupHeader = new PopupHeader();
+		this.children.modalAddUser = new ModalInput({
+			formId: "add-user",
+			id: "addUser",
+			text: "Добавить",
+			modalTitle: "Добавить пользователя",
+			onClick: () => this.children.modalAddUser.hide(),
+		});
+		this.children.modalDelUser = new ModalInput({
+			formId: "delete-user",
+			id: "delUser",
+			text: "Удалить",
+			modalTitle: "Удалить пользователя",
+			onClick: () => this.children.modalDelUser.hide(),
+
+		});
+		this.children.modalDelChat = new ModalDelChat({
+			formId: "delete-chat",
+			id: "delChat",
+			text: "Удалить чат",
+			modalTitle: "Удалить чат",
+			onClick: () => this.children.modalDelChat.hide(),
+
+		});
+
+
 	}
 
 	render() {

@@ -1,50 +1,28 @@
-import { modalContainer, modal } from "../vars.ts";
-
-//avatar to click
-const changeAvatar = document.querySelector(".profile__avatar");
-
-//attach. modal form
-const modalForm = document.querySelector(".attach-modal-form");
-//attach. label, input, p-block
-const modalState = document.querySelector(".attach-placeholder");
-const modalInput = document.querySelector(".attach-input");
-const modalBlock = document.querySelector(".attach-not-chosen");
-
-function modifyAttachModal(e: Event) {
-	e.preventDefault();
-	const modalTitle = document.querySelector(".modal-attach-title");
-	if ((modalTitle as HTMLElement).textContent === "Ошибка, попробуйте ещё раз") {
-		(modalTitle as HTMLElement).classList.add("modal__title_error");
-	}
-	if (!(modalInput as HTMLInputElement).value) { //modalInput as HTMLInputElement).value == 0
-		(modalBlock as HTMLElement).textContent = "Нужно выбрать файл";
-	} else {
-		(modalTitle as HTMLElement).textContent = "Файл загружен";
-		(modalState as HTMLElement).textContent = (modalInput as HTMLInputElement).value;
-		(modalBlock as HTMLElement).textContent = "";
-	}
-}
-
-export function displayModalContainer() {
-	console.log("modal");
-	(modalContainer as HTMLElement).style.display = "flex";
+export function changeAvatar(form: HTMLFormElement, e: Event) {
 	
-}
+	const fileInput = form.querySelector('input') as HTMLInputElement;
+	const file: File | null = fileInput.files![0];
+	let formData = new FormData();
+	formData.append("file", file)
 
-if (changeAvatar) {
-	changeAvatar.addEventListener("click", displayModalContainer);
-}
+	const modalTitle = document.querySelector(".modal-attach-title") as HTMLElement;
+	const modalBlock = document.querySelector(".attach-not-chosen") as HTMLElement;
+	const modalState = document.querySelector(".attach-placeholder")  as HTMLElement;
 
-if (modalForm) {
-	modalForm.addEventListener("submit", modifyAttachModal);
-}
 
-//COMMON rules for all modals
-if (modal) {
-	modal.addEventListener("click", (e) => e.stopPropagation());
-}
-if (modalContainer) {
-	modalContainer.addEventListener("click", () => {
-		(modalContainer as HTMLElement).style.display = "none";
-	});
+		if (file === null || undefined) {
+			modalTitle.textContent = "Ошибка, попробуйте ещё раз"
+			modalTitle.classList.add("modal__title_error");
+		} 
+		else if (file === undefined){
+			modalBlock.textContent = "Нужно выбрать файл";
+		} 
+		else {	
+			const modalContainer = document.querySelector(".modal-container") as HTMLElement;
+			modalContainer!.style.display = "none";
+			modalTitle.textContent = "Загрузите файл";
+			modalState.textContent = "Выбрать файл на компьютере";
+			(e.target as HTMLFormElement).reset();
+			console.log({"newAvatar": formData});
+		}
 }
