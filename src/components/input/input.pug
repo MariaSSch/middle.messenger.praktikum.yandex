@@ -1,6 +1,4 @@
-mixin input(fieldType, fieldName, formId, placeholder, labelClass)
-    label(class="label" + " " + labelClass)
-        input(type=fieldType placeholder=" " class="input" name=fieldName form=formId)
-        span(class="input-placeholder") #{placeholder}
-        if block 
-            block
+label(class="label")
+	input(type= fieldType placeholder=" " class="input" name= fieldName form= formId pattern= fieldPattern autocomplete= "off" required)
+	span(class="input-placeholder") #{placeholder}
+	#{spanError}

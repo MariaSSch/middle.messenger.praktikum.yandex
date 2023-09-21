@@ -1,15 +1,6 @@
-include ../btn-round/btn-round.pug
-mixin chat-footer(footerMenu)
-    div(class="chats__footer")
-        form(id="send-msg" action="" class="chats__send-form")
-            div(class="chats__send-menu pop-up-menu")
-                each position in footerMenu
-                    label(class="chats__send-item")
-                        img(src=position.src)
-                        input(type="file" accept=position.accept name=position.name)
-                        span(class="chats__send-value") #{position.descr}
-            img(src="../../../imgs/attach_sign.png" class="chats__send-menu-btn")
-            input(type="text" name="message" class="chats__send-msg-input" placeholder="Сообщение")
-            +btn-round
-        
-        
+div(class="chats__footer")
+	#{form}
+		#{popupFooter}
+		#{imgPopup}
+		#{input}
+		#{btnRound}

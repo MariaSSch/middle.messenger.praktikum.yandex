@@ -1,14 +1,13 @@
-include ../avatar/avatar.pug
-mixin chat-header(avatarSrc, name, headerMenu)
-    div(class="chats__header")
-        div(class="chats__header-interlocutor")
-            +avatar(avatarSrc, "chats__header-avatar")
-            p(class="chats__header-name") #{name}
-        div(class="chats__header-expander")
-            img(src="../../../imgs/expander.png" , alt="expander")
-            div(class="chats__header-menu pop-up-menu")
-                each position in headerMenu
-                    div(class="chats__header-menu-item")
-                        div(class="chats__header-menu-action")
-                            img(src=position.src)
-                        span #{position.descr}
+div(class="chats__header")
+	div(class="chats__header-interlocutor")
+		#{avatar}
+		p(class="chats__header-name") #{name}
+	div(class="chats__header-expander")
+		#{imgPopup}
+		#{popupHeader}
+			#{popupAddUser}
+			#{popupDelUser}
+			#{popupDelChat}
+		#{modalAddUser}
+		#{modalDelUser}
+		#{modalDelChat}

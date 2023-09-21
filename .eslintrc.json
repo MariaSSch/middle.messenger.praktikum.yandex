@@ -1,0 +1,36 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint"],
+    "extends": ["airbnb-base", "eslint:recommended", "plugin:@typescript-eslint/recommended"],
+    "rules": {
+      "quotes": ["error", "double", {"avoidEscape": true, "allowTemplateLiterals": true}],
+			"linebreak-style": "off",
+			"no-multiple-empty-lines": ["error", {"max": 2, "maxEOF": 1}],
+			"no-console": "off",
+			"no-spaced-func": "off",
+			"func-call-spacing": "off",
+			// "indent": ["error", "tab"],
+			"import/no-extraneous-dependencies": ["error", {
+				"devDependencies": true, 
+				"packageDir": "./"
+				}
+			],
+			"spaced-comment": "off",
+			"no-plusplus": "off",
+			"no-tabs": ["error", { "allowIndentationTabs": true }],
+			"no-useless-constructor": "off",
+			"import/prefer-default-export": "off",
+			"import/extensions": "off",
+			"import/no-unresolved": "off",
+			"no-param-reassign": "off",
+			"no-constant-condition": "off",
+			"no-return-assign": "off",
+			"no-unreachable-loop": "off",
+			"no-underscore-dangle": "off",
+			"consistent-return": "off",
+			"no-shadow": "off",
+			"prefer-promise-reject-errors": "off",
+			"@typescript-eslint/no-this-alias": "off"
+    },
+    "root": true
+  }

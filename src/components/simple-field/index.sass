@@ -1,13 +1,13 @@
 @use '../../sass/utiles/vars'
 @use '../../sass/utiles/mixins'
-.profile__fields
+.profile__simple-fields
     display: flex
     justify-content: space-between
     border-bottom: 1px solid vars.$bgAccent
     padding: 10px 0
     &:last-child
         border-bottom: none
-    .profile__field
+    .profile__simple-field
         @include mixins.form-text(vars.$primaryText)
-    .profile__field-value
+    .profile__simple-field-value
         @include mixins.form-text(vars.$secondaryText)

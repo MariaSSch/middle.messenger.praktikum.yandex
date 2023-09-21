@@ -1,0 +1,18 @@
+{ 
+	"extends": ["stylelint-config-standard"],
+	"ignoreFiles": "dist/*",
+	"overrides": [
+		{
+			"files": ["**/*.sass"],
+			"customSyntax": "postcss-sass"
+		}
+	],
+	"rules": {
+		"block-no-empty": true,
+		"comment-no-empty": true,
+		"color-named": "never",
+		"font-weight-notation": "numeric",
+		"selector-class-pattern": null
+	},
+	"root": true
+}
