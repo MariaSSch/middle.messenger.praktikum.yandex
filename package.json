@@ -7,6 +7,8 @@
   "scripts": {
     "dev": "vite",
     "start": "npm run build && node server.js",
+    "lint-script": "eslint . --fix",
+    "lint-style": "stylelint \"**/*.sass\"",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -16,7 +18,9 @@
     "@typescript-eslint/eslint-plugin": "^6.4.0",
     "@typescript-eslint/parser": "^6.4.0",
     "eslint": "^8.47.0",
-    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "i": "^0.3.7",
+    "npm": "^10.1.0",
     "path": "^0.12.7",
     "postcss-sass": "^0.5.0",
     "pug": "^3.0.2",

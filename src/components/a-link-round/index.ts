@@ -10,17 +10,17 @@ interface LinkRoundProps {
 }
 
 export class LinkRound extends Block {
-	constructor(props: LinkRoundProps){
-		super({
-			...props,
-		events: {
-			click: props.onClick
-		},
-	});
-	}
+  constructor(props: LinkRoundProps) {
+    super({
+      ...props,
+      events: {
+        click: props.onClick,
+      },
+    });
+  }
 
-	render() {
-		return this.compile(template, this.props)
-	}
+  render() {
+    return this.compile(template, this.props);
+  }
 }
 //direction="&#8594;"

@@ -11,11 +11,11 @@ interface BtnMainProps {
 }
 
 export class BtnMain extends Block {
-	constructor(props: BtnMainProps) {
-		super(props);
-	}
+  constructor(props: BtnMainProps) {
+    super(props);
+  }
 
-	render() {
-		return this.compile(template, this.props);
-	}
+  render() {
+    return this.compile(template, this.props);
+  }
 }

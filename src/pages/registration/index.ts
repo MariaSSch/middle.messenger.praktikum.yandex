@@ -3,21 +3,17 @@ import Block from "../../js/block";
 import template from "./registration.pug";
 
 export class Registration extends Block {
-	constructor() {
-		super();
-	}
+  constructor() {
+    super();
+  }
 
-	init() {
-		this.children.formRegistration = new FormRegistration({
-			formId: "registration",
-			action: "#",
-			formTitle: "Зарегистрироваться",
-			toLink: "../login.html",
-			link: "Войти"
-		})
-	}
+  init() {
+    this.children.formRegistration = new FormRegistration({
+      formTitle: "Зарегистрироваться",
+    });
+  }
 
-	render() {
-		return this.compile(template, this.props)
-	}
+  render() {
+    return this.compile(template, this.props);
+  }
 }

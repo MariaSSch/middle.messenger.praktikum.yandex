@@ -8,21 +8,21 @@ interface ProfileAsideProps {
 }
 
 export class ProfileAside extends Block {
-	constructor(props: ProfileAsideProps) {
-		super(props)
-	}
+  constructor(props: ProfileAsideProps) {
+    super(props);
+  }
 
-	init() {
-		this.children.linkRound = new LinkRound({
-			direction: "&#8592;",
-			onClick: () => render(this.props.toPage as any),
-			events: {
-				click: () => this.props.onClick,
-			}
-		})
-	}
+  init() {
+    this.children.linkRound = new LinkRound({
+      direction: "&#8592;",
+      onClick: () => render(this.props.toPage as any), //eslint-disable-line
+      events: {
+        click: () => this.props.onClick,
+      },
+    });
+  }
 
-	render() {
-		return this.compile(template, this.props)
-	}
+  render() {
+    return this.compile(template, this.props);
+  }
 }

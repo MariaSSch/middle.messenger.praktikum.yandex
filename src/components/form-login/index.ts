@@ -2,78 +2,79 @@ import Block from "../../js/block";
 import template from "./form-login.pug";
 import { Input } from "../input";
 import { BtnMain } from "../btn-main";
-import { fieldsLogin } from "../../js/utils/login-page-fields"
+import { fieldsLogin } from "../../js/forms/login-page-fields";
 import { Link } from "../link";
 import { render } from "../../js/render";
-import * as validate from "../../js/utils/form-validation";
-
+import * as validate from "../../js/form-validation";
+import { Form } from "../form";
+import { onSubmit } from "../../js/onSubmit";
 
 interface FormProps {
-	formId: string;
-	action: string;
+	// formId: string;
+	// action: string;
 	formTitle: string;
-};
+}
 
 export class FormLogin extends Block {
-	constructor(props: FormProps) {
-		super({...props,
-			events: {
-				submit: (e: Event) => {
-					e.preventDefault();
-					const login = this.children.inputL.getValue();
-					const password = this.children.inputP.getValue();
-					console.log({login, password});
-					if (validate.isFormValid(e)) {
-					console.log({login, password});
-					}
-					return;
-				}
-			},
-		});
+  constructor(props: FormProps) {
+    super({
+      ...props,
+      events: {
+        submit: (e: Event) => {
+          if (validate.isFormValid(e)) {
+            onSubmit.call(this);
+            render("chats");
+          } else {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            console.log("form is invalid");
+          }
+        },
+      },
+    });
+  }
 
-	}
+  init() {
+    this.children.form = new Form({
+      formId: "login",
+      action: "#",
+      className: "form",
+    });
+    this.children.inputL = new Input({
+      fieldType: fieldsLogin[0].type,
+      fieldName: fieldsLogin[0].name,
+      formId: "login-form",
+      placeholder: fieldsLogin[0].placeholder,
+      fieldPattern: "^[A-Za-z][a-z0-9_\\-]{2,19}$",
+      events: {
+        focusout: (e: Event) => { validate.isFieldValid(e); },
+      },
+    });
+    this.children.inputP = new Input({
+      fieldType: fieldsLogin[1].type,
+      fieldName: fieldsLogin[1].name,
+      formId: "login-form",
+      placeholder: fieldsLogin[1].placeholder,
+      fieldPattern: "^[A-Za-z0-9]{8,40}$",
+      events: {
+        focusout: (e: Event) => { validate.isFieldValid(e); },
+      },
 
-	init() {
+    });
+    this.children.btnMain = new BtnMain({
+      text: "Войти",
+    });
+    this.children.link = new Link({
+      text: "Нет аккаунта?",
+      linkClass: "form__link-to-action",
+      onClick: () => render("registration"),
+      events: {
+        click: () => this.props.onClick,
+      },
+    });
+  }
 
-		this.children.inputL = new Input({
-			fieldType: fieldsLogin[0].type,
-			fieldName: fieldsLogin[0].name,
-			formId: "login-form",
-			placeholder: fieldsLogin[0].placeholder,
-			fieldPattern: "/^[a-zA-Z]([a-zA-Z0-9_]){3,20}$/gi",
-			events: {
-				focusout: function (e: Event) {validate.isLoginValid(e)},
-			},
-		});
-		this.children.inputP = new Input({
-			fieldType: fieldsLogin[1].type,
-			fieldName: fieldsLogin[1].name,
-			formId: "login-form",
-			placeholder: fieldsLogin[1].placeholder,
-			fieldPattern: "/^(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,40}$/g",
-			events: {
-				focusout: function (e: Event) {validate.isPassValid(e)},
-			},
-
-		});
-		this.children.btnMain = new BtnMain({
-			text: "Войти",
-			onSubmit: (e) => e.preventDefault(),
-			events: {
-				submit: () => this.props.onSubmit,
-			}
-		});
-		this.children.link = new Link({
-			text: "Нет аккаунта?",
-			linkClass: "form__link-to-action",
-			onClick: () => render("registration"),
-			events: {
-				click: () => this.props.onClick,
-			}
-		})
-	}
-
-	render() {
-		return this.compile(template, this.props);
-	}
+  render() {
+    return this.compile(template, this.props);
+  }
 }

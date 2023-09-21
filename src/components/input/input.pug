@@ -1,4 +1,4 @@
 label(class="label")
-	input(type= fieldType placeholder=" " class="input" name= fieldName form= formId pattern= fieldPattern autocomplete= "off" required onblur=onBlur)
+	input(type= fieldType placeholder=" " class="input" name= fieldName form= formId pattern= fieldPattern autocomplete= "off" required)
 	span(class="input-placeholder") #{placeholder}
-	span(class="input-error") #{inputErrorMsg}
+	#{spanError}

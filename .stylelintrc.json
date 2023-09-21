@@ -3,7 +3,7 @@
 	"ignoreFiles": "dist/*",
 	"overrides": [
 		{
-			"files": "**/*.sass",
+			"files": ["**/*.sass"],
 			"customSyntax": "postcss-sass"
 		}
 	],
@@ -11,7 +11,8 @@
 		"block-no-empty": true,
 		"comment-no-empty": true,
 		"color-named": "never",
-		"font-weight-notation": "numeric"
+		"font-weight-notation": "numeric",
+		"selector-class-pattern": null
 	},
 	"root": true
 }

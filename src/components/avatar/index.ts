@@ -11,15 +11,16 @@ interface AvatarProps {
 }
 
 export class Avatar extends Block {
-	constructor(props: AvatarProps) {
-		super({...props,
-			events: {
-				click: props.onClick
-			}
-		});
-	}
+  constructor(props: AvatarProps) {
+    super({
+      ...props,
+      events: {
+        click: props.onClick,
+      },
+    });
+  }
 
-	render() {
-		return this.compile(template, this.props);
-	}
+  render() {
+    return this.compile(template, this.props);
+  }
 }

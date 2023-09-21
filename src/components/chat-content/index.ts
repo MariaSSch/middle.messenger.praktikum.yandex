@@ -9,11 +9,11 @@ interface ChatContentProps {
 }
 
 export class ChatContent extends Block {
-	constructor(props: ChatContentProps) {
-		super(props)
-	}
+  constructor(props: ChatContentProps) {
+    super(props);
+  }
 
-	render() {
-		return this.compile(template, this.props)
-	}
+  render() {
+    return this.compile(template, this.props);
+  }
 }

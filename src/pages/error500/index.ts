@@ -4,22 +4,21 @@ import { Error } from "../../components/error";
 
 
 export class Error500 extends Block {
-	constructor() {
-		super();
-		
-	}
-	init() {
-		this.children.error500 = new Error({
-			errorCode: "500",
-			message: "Мы уже фиксим",
-			toPage: "chats",
-			linkMessage: "Назад к чатам",
-		});
-	}
+  constructor() {
+    super();
+  }
+
+  init() {
+    this.children.error500 = new Error({
+      errorCode: "500",
+      message: "Мы уже фиксим",
+      toPage: "chats",
+      linkMessage: "Назад к чатам",
+    });
+  }
 
 
-	render() {
-
-		return this.compile(template, this.props);
-	}
+  render() {
+    return this.compile(template, this.props);
+  }
 }

@@ -5,19 +5,18 @@ interface PopupHeaderItemProps {
 	src: string;
 	descr: string;
 	onClick?: () => void;
-	events?: {
-		click: () => void;
-	};
 }
 export class PopupHeaderItem extends Block {
-	constructor(props: PopupHeaderItemProps) {
-		super({...props,
-			events: {
-				click: props.onClick,
-			},
-		});
-	}
-	render() {
-		return this.compile(template, this.props);
-	}
+  constructor(props: PopupHeaderItemProps) {
+    super({
+      ...props,
+      events: {
+        click: props.onClick,
+      },
+    });
+  }
+
+  render() {
+    return this.compile(template, this.props);
+  }
 }

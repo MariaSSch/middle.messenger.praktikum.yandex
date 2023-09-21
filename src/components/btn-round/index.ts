@@ -13,12 +13,12 @@ interface BtnRoundProps {
 }
 
 export class BtnRound extends Block {
-	constructor(props: BtnRoundProps) {
-		super(props)
-	}
+  constructor(props: BtnRoundProps) {
+    super(props);
+  }
 
-	render() {
-		return this.compile(template, this.props)
-	}
+  render() {
+    return this.compile(template, this.props);
+  }
 }
 //direction="&#8594;"

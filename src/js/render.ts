@@ -10,20 +10,20 @@ import { Chats } from "../pages/chats";
 import { PopupFooter } from "../components/popup-footer";
 
 const ROUTES = {
-	'error500': Error500,
-	'error404': Error404,
-	'login': Login,
-	'registration': Registration,
-	'profile': Profile,
-	'changePass': ChangePass,	
-	'changeProfile': ChangeProfile,	
-	'chats': Chats,
-	'main': MainPage,
-	'test': PopupFooter,
+  error500: Error500,
+  error404: Error404,
+  login: Login,
+  registration: Registration,
+  profile: Profile,
+  changePass: ChangePass,
+  changeProfile: ChangeProfile,
+  chats: Chats,
+  main: MainPage,
+  test: PopupFooter,
 };
 
 export function render(name: keyof typeof ROUTES) {
-	const root = document.querySelector("#app");
+  const root = document.querySelector("#app");
 
 	root!.innerHTML = "";
 

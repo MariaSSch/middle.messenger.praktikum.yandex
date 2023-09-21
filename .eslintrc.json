@@ -1,7 +1,7 @@
 {
     "parser": "@typescript-eslint/parser",
     "plugins": ["@typescript-eslint"],
-    "extends": ["airbnb", "eslint:recommended", "plugin:@typescript-eslint/recommended"],
+    "extends": ["airbnb-base", "eslint:recommended", "plugin:@typescript-eslint/recommended"],
     "rules": {
       "quotes": ["error", "double", {"avoidEscape": true, "allowTemplateLiterals": true}],
 			"linebreak-style": "off",
@@ -9,15 +9,28 @@
 			"no-console": "off",
 			"no-spaced-func": "off",
 			"func-call-spacing": "off",
-			"indent": ["error", "tab"],
+			// "indent": ["error", "tab"],
 			"import/no-extraneous-dependencies": ["error", {
-				"devDependencies": false, 
+				"devDependencies": true, 
 				"packageDir": "./"
 				}
 			],
 			"spaced-comment": "off",
 			"no-plusplus": "off",
-			"no-tabs": ["error", { "allowIndentationTabs": true }]
+			"no-tabs": ["error", { "allowIndentationTabs": true }],
+			"no-useless-constructor": "off",
+			"import/prefer-default-export": "off",
+			"import/extensions": "off",
+			"import/no-unresolved": "off",
+			"no-param-reassign": "off",
+			"no-constant-condition": "off",
+			"no-return-assign": "off",
+			"no-unreachable-loop": "off",
+			"no-underscore-dangle": "off",
+			"consistent-return": "off",
+			"no-shadow": "off",
+			"prefer-promise-reject-errors": "off",
+			"@typescript-eslint/no-this-alias": "off"
     },
     "root": true
   }

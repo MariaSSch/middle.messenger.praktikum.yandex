@@ -1,193 +1,196 @@
-import { EventBus } from "./event-bus";
 import { v4 as uuidv4 } from "uuid";
+import { EventBus } from "./event-bus";
 
-class Block {
-	static Events = {
-		INIT: "init",
-		FLOW_CMD: "flow: component-did-mount",
-		FLOW_CDU: "flow: component-did-update",
-		FLOW_RENDER: "flow: render"
-	};
+abstract class Block {
+  static Events = {
+    INIT: "init",
+    FLOW_CMD: "flow: component-did-mount",
+    FLOW_CDU: "flow: component-did-update",
+    FLOW_RENDER: "flow: render",
+  };
 
-	protected props: Record<string, unknown>;
-	private eventBus: () => EventBus;
-	private _element: HTMLElement | null = null;
-	private _meta: { props: any };
-	protected children: Record<string, Block>;
-	public id = uuidv4();
+  protected props: Record<string, unknown>;
 
-	constructor(propsWithChildren: object = {}) {
-		const eventBus = new EventBus();
+  private eventBus: () => EventBus;
 
-		const { props, children } = this._getChildrenAndProps(propsWithChildren);
-		
-		this._meta = {
-			props,
-		};
-		this.children = children;
-		this.props = this._makePropsProxy(props);
-		this.eventBus = () => eventBus;
-		this._registerEvents(eventBus);
-		eventBus.emit(Block.Events.INIT);
+  private _element: HTMLElement | null = null;
 
-}
+  protected children: Record<string, Block>; // eslint-disable-line
 
-	_getChildrenAndProps(childrenAndProps: object) {
-		const props: Record<string, any> = {};
-		const children: Record<string, Block> = {};
+  public id = uuidv4();
 
-		Object.entries(childrenAndProps).forEach(([key, value]) => {
-			if (value instanceof Block) {
-				children[key] = value;
-			} else {
-				props[key] = value;
-			}
-		});
-		return { props, children };
-	}
+  constructor(propsWithChildren: object = {}) {
+    const eventBus = new EventBus();
 
-	protected compile(template: (context: any) => string, context: any) {
-		const contextAndStabs = { ...context };
+    const { props, children } = this._getChildrenAndProps(propsWithChildren);
 
-		Object.entries(this.children).forEach(([name, component]) => {
-			contextAndStabs[name] = `div data-id=${component.id}`;
-		});
+    this.children = children;
+    this.props = this._makePropsProxy(props);
+    this.eventBus = () => eventBus;
+    this._registerEvents(eventBus);
+    eventBus.emit(Block.Events.INIT);
+  }
 
-		const html = template(contextAndStabs);
+  _getChildrenAndProps(childrenAndProps: Record<string, any>) {// eslint-disable-line
+    const props: Record<string, unknown> = {};
+    const children: Record<string, Block> = {};
 
-		//contains DocumentFragment
-		const temp = document.createElement("template");
-		temp.innerHTML = html;
+    Object.entries(childrenAndProps).forEach(([key, value]) => {
+      if (value instanceof Block) {
+        children[key] = value;
+      } else {
+        props[key] = value;
+      }
+    });
+    return { props, children };
+  }
 
-		Object.entries(this.children).forEach(([_, component]) => {
-			const stub = temp.content.querySelector(`[data-id="${component.id}"]`);
+  protected compile(template: (context: any) => string, context: Record<string, unknown>) { // eslint-disable-line
+    const contextAndStabs = { ...context };
 
-			if(!stub) {
-				return;
-			}
-			
-			component.getContent()?.append(...Array.from(stub.childNodes));
-			stub.replaceWith(component.getContent()!);
-	});
+    Object.entries(this.children).forEach(([name, component]) => {
+      contextAndStabs[name] = `div data-id=${component.id}`;
+    });
 
-		//returns documentFragment, donde stubs are replaced with components
-		return temp.content;
-	}
-	_addEvents() {
-		const { events = {} } = this.props as { events: Record<string, () => void>};
+    const html = template(contextAndStabs);
 
-		Object.keys(events).forEach(event => {
-			this._element!.addEventListener(event, events[event])
-		});
-	}
+    //contains DocumentFragment
+    const temp = document.createElement("template");
+    temp.innerHTML = html;
 
-	_registerEvents(eventBus: EventBus) {
-		eventBus.on(Block.Events.INIT, this._init.bind(this));
-		eventBus.on(Block.Events.FLOW_CMD, this._componentDidMount.bind(this));
-		eventBus.on(Block.Events.FLOW_CDU, this._componentDidUpdate.bind(this));
-		eventBus.on(Block.Events.FLOW_RENDER, this._render.bind(this));
-	}
+    Object.entries(this.children).forEach(([_, component]) => {// eslint-disable-line
+      const stub = temp.content.querySelector(`[data-id="${component.id}"]`);
 
-	private _init() { 
-		this.init();
-		
-		//вызывает первый рендер
-		this.eventBus().emit(Block.Events.FLOW_RENDER);
-	}
+      if (!stub) {
+        return;
+      }
 
-	protected init() {} 
-	_componentDidMount() { 
-		this.componentDidMount();
-	}
+      component.getContent()?.append(...Array.from(stub.childNodes));
+      stub.replaceWith(component.getContent()!);
+    });
 
-	componentDidMount() {} 
+    //returns documentFragment, donde stubs are replaced with components
+    return temp.content;
+  }
 
-	public dispatchComponentDidMount() { 
-		this.eventBus().emit(Block.Events.FLOW_CMD);
-		
-		Object.values(this.children).forEach(child => child.dispatchComponentDidMount())
-	}
+  _addEvents() {
+    const { events = {} } = this.props as { events: Record<string, () => void>};
 
-	private _componentDidUpdate(oldProps: any, newProps: any) { 
-		if (this.componentDidUpdate(oldProps, newProps)) {
-			this.eventBus().emit(Block.Events.FLOW_RENDER)
-		}
-	}
+    Object.keys(events).forEach((event) => {
+			this._element!.addEventListener(event, events[event]);
+    });
+  }
 
-	protected componentDidUpdate(oldProps: any, newProps: any) { 
-		return true;
-	}
+  _registerEvents(eventBus: EventBus) {
+    eventBus.on(Block.Events.INIT, this._init.bind(this));
+    eventBus.on(Block.Events.FLOW_CMD, this._componentDidMount.bind(this));
+    eventBus.on(Block.Events.FLOW_CDU, this._componentDidUpdate.bind(this));
+    eventBus.on(Block.Events.FLOW_RENDER, this._render.bind(this));
+  }
 
-	setProps = (nextProps: any) => { 
-		if (!nextProps) {
-			return;
-		}
+  private _init() {
+    this.init();
 
-		Object.assign(this.props, nextProps);
-	};
+    //вызывает первый рендер
+    this.eventBus().emit(Block.Events.FLOW_RENDER);
+  }
 
-	getElement() { 
-		return this._element;
-	}
+  protected init() {} // eslint-disable-line
 
-	private _render() {
-		const block = this.render();
+  _componentDidMount() {
+    this.componentDidMount();
+  }
 
-		//take off extra cover
-		const newElem: HTMLElement = block.firstElementChild as HTMLElement;
+  componentDidMount() {} // eslint-disable-line
 
-		//to rewrite content
-		if(this._element) {
-			this._element.replaceWith(newElem);
-		}
-		this._element = newElem;
+  public dispatchComponentDidMount() {
+    this.eventBus().emit(Block.Events.FLOW_CMD);
 
-		this._addEvents();
-	}
+    Object.values(this.children).forEach((child) => child.dispatchComponentDidMount());
+  }
 
-	protected render(): DocumentFragment {
-		return new DocumentFragment();
-	}
+  private _componentDidUpdate(oldProps: any, newProps: any) { //eslint-disable-line
+    if (this.componentDidUpdate(oldProps, newProps)) {
+      this.eventBus().emit(Block.Events.FLOW_RENDER);
+    }
+  }
 
-	getContent() {
-		return this._element;
-	}
+  protected componentDidUpdate( //eslint-disable-line
+    oldProps: Record<string, unknown>, //eslint-disable-line
+    newProps: Record<string, unknown>, //eslint-disable-line
+  ) {
+    return true;
+  }
 
-	_makePropsProxy(props: any) {
-		const self = this;
+  setProps = (nextProps: Record<string, any>) => { //eslint-disable-line
+    if (!nextProps) {
+      return;
+    }
 
-		return new Proxy (props, {
-			get(target, prop: string | symbol) {
-				const value = target[prop];
-				return typeof value === "function" ? value.bind(target) : value;
-			},
-			set(target, prop: string | symbol, value) {
+    Object.assign(this.props, nextProps);
+  };
 
-				const oldTarget = {...target}
-				target[prop] = value;
+  getElement() {
+    return this._element;
+  }
 
-				self.eventBus().emit(Block.Events.FLOW_CDU, oldTarget, target);
-				return true;
-			},
-			deleteProperty() {
-				throw new Error("No access");
-			}
-		});
-	}
+  private _render() {
+    const block = this.render();
 
-	show(display: string) {
+    //take off extra cover
+    const newElem: HTMLElement = block.firstElementChild as HTMLElement;
+
+    //to rewrite content
+    if (this._element) {
+      this._element.replaceWith(newElem);
+    }
+    this._element = newElem;
+
+    this._addEvents();
+  }
+
+  protected render(): DocumentFragment { //eslint-disable-line
+    return new DocumentFragment();
+  }
+
+  getContent() {
+    return this._element;
+  }
+
+  _makePropsProxy(props: Record<string, unknown>) {
+    const self = this;
+
+    return new Proxy (props, {
+      get(target, prop: string) {
+        const value = target[prop];
+        return typeof value === "function" ? value.bind(target) : value;
+      },
+      set(target, prop: string, value) {
+        const oldTarget = { ...target };
+        target[prop] = value;
+
+        self.eventBus().emit(Block.Events.FLOW_CDU, oldTarget, target);
+        return true;
+      },
+      deleteProperty() {
+        throw new Error("No access");
+      },
+    });
+  }
+
+  show(display: string) {
 		this.getContent()!.style.display = display;
-	}
+  }
 
-	hide() {
+  hide() {
 		this.getContent()!.style.display = "none";
-	}
+  }
 
-	
-	public getValue(): string {
-		const input = this.getElement()?.querySelector("input") as HTMLInputElement;
-		return input.value;
-	}
+
+  public getValue(): string {
+    const input = this.getElement()?.querySelector("input") as HTMLInputElement;
+    return input.value;
+  }
 }
 
 export default Block;

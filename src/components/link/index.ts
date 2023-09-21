@@ -11,16 +11,16 @@ interface LinkProps {
 }
 
 export class Link extends Block {
-	constructor(props: LinkProps) {
-		super({
-			...props,
-		events: {
-			click: props.onClick,
-		}
-	});
-	}
+  constructor(props: LinkProps) {
+    super({
+      ...props,
+      events: {
+        click: props.onClick,
+      },
+    });
+  }
 
-	render() {
-		return this.compile(template, this.props);
-	}
+  render() {
+    return this.compile(template, this.props);
+  }
 }

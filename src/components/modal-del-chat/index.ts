@@ -11,21 +11,24 @@ interface ModalDelChatProps {
 	id?: string;
 }
 export class ModalDelChat extends Block {
-	constructor(props: ModalDelChatProps) {
-		super({...props,
-			events: {
-				click: props.onClick,
-			},
-		});
-	}
-	init() {
-		this.children.modal = new Modal();
-		this.children.formModalDelChat = new FormModalDelChat({
-			formId: "delChat",
-			text: "Удалить",
-		});
-	}
-	render() {
-		return this.compile(template, this.props);
-	}
+  constructor(props: ModalDelChatProps) {
+    super({
+      ...props,
+      events: {
+        click: props.onClick,
+      },
+    });
+  }
+
+  init() {
+    this.children.modal = new Modal();
+    this.children.formModalDelChat = new FormModalDelChat({
+      text: "Удалить",
+      onSubmit: () => this.hide(),
+    });
+  }
+
+  render() {
+    return this.compile(template, this.props);
+  }
 }

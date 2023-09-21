@@ -1,4 +1,9 @@
 div(class="modal-container")
 	#{modal}
-		h3(class="modal__title modal-attach-title") Загрузите файл
-		#{formModalAttach}
+		#{title}
+		#{form}
+			label(class="attach-label")
+				#{inputFile}
+				#{attachStatus}
+			#{btnMain}
+			#{note}

@@ -11,18 +11,18 @@ interface ChatProps {
 }
 
 export class Chat extends Block {
-	constructor(props: ChatProps) {
-		super(props)
-	}
+  constructor(props: ChatProps) {
+    super(props);
+  }
 
-	init() {
-		this.children.avatar = new Avatar({
-			avatarClass: "chats__item-avatar",
-			avatarSrc: this.props.avatarSrc as string,
-		})
-	}
+  init() {
+    this.children.avatar = new Avatar({
+      avatarClass: "chats__item-avatar",
+      avatarSrc: this.props.avatarSrc as string,
+    });
+  }
 
-	render() {
-		return this.compile(template, this.props)
-	}
+  render() {
+    return this.compile(template, this.props);
+  }
 }

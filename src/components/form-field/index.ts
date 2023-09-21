@@ -1,4 +1,5 @@
 import Block from "../../js/block";
+import { SpanError } from "../span-error-elem";
 import template from "./form-field.pug";
 
 interface FormFieldProps {
@@ -6,26 +7,37 @@ interface FormFieldProps {
 	fieldType: string;
 	fieldName: string;
 	formId: string;
-	fieldValue?: string;
-	pattern?: string;
-	events?: {
-		focusout?: (e: Event) => void,
-	}
-};
+	fieldPattern?: string;
+	placeholder?: string;
+	onFocusout: (e: Event) => void;
+
+}
 
 export class FormFiled extends Block {
-	constructor(props: FormFieldProps) {
-		super({...props,
-			events: {
-				change: (e: Event) => {
-					const input = e.target as HTMLInputElement;
+  constructor(props: FormFieldProps) {
+    super({
+      ...props,
+      events: {
+        change: (e: Event) => {
+          const input = e.target as HTMLInputElement;
 					input!.value = (e.target as HTMLInputElement).value;
-					console.log("changed")
-				}
-			}})
-	}
+        },
+        focusin: (e: Event) => {
+          const input = e.target as HTMLInputElement;
+					input!.placeholder = "";
+        },
+        focusout: props.onFocusout,
+      },
+    });
+  }
 
-	render() {
-		return this.compile(template, this.props);
-	}
+  init() {
+    this.children.spanError = new SpanError({
+      inputError: "",
+    });
+  }
+
+  render() {
+    return this.compile(template, this.props);
+  }
 }

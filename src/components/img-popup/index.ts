@@ -12,16 +12,16 @@ interface ImgPopupProps {
 }
 
 export class ImgPopup extends Block {
-	constructor(props: ImgPopupProps){
-		super({
-			...props,
-		events: {
-			click: props.onClick
-		},
-	});
-	}
+  constructor(props: ImgPopupProps) {
+    super({
+      ...props,
+      events: {
+        click: props.onClick,
+      },
+    });
+  }
 
-	render() {
-		return this.compile(template, this.props)
-	}
+  render() {
+    return this.compile(template, this.props);
+  }
 }

@@ -6,26 +6,28 @@ import template from "./error.pug";
 interface ErrorProps {
 	errorCode: string;
 	message: string;
-	toPage: string;
+	toPage?: string;
 	linkMessage: string;
 }
 
 export class Error extends Block {
-	constructor(props: ErrorProps) {
-		super(props);
-	}
-	init() {
-		this.children.link = new Link({
-			text: this.props.linkMessage as string,
-			linkClass: "error__linkTo",
-			onClick: () => render(this.props.toPage as any),
-			events: {
-				click: () => this.props.onClick,
-			}
-		
-		})
-	}
-	render() {
-		return this.compile(template, this.props);
-	}
+  constructor(props: ErrorProps) {
+    super(props);
+  }
+
+  init() {
+    this.children.link = new Link({
+      text: this.props.linkMessage as string,
+      linkClass: "error__linkTo",
+      onClick: () => render("chats"),
+      events: {
+        click: () => this.props.onClick,
+      },
+
+    });
+  }
+
+  render() {
+    return this.compile(template, this.props);
+  }
 }
