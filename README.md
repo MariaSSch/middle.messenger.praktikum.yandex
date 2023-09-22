@@ -15,13 +15,4 @@
 - Команда для линтинга стилей `npm run lint-style`
 - Команда для сборки и запуска `npm run start`
 - Сборка и запуск проекта выполняются на 3000 порту
-- Хостинг проекта выполнен на `Netlify`  
-свёрстанные страницы:  
-    [логин](https://messenger-module1.netlify.app/src/pages/login/)  
-    [регистрация](https://messenger-module1.netlify.app/src/pages/registration/)  
-    [чаты](https://messenger-module1.netlify.app/src/pages/chats/) (реализованы pop-up menu ( прикрепление файла и меню чата))
-    [профиль](https://messenger-module1.netlify.app/src/pages/profile/)  
-    [изменить данные](https://messenger-module1.netlify.app/src/pages/change-profile/)  
-    [изменить пароль](https://messenger-module1.netlify.app/src/pages/change-pass/)
-    [страница ошибки 404](https://messenger-module1.netlify.app/src/pages/error404/)
-    [страница ошибки 500](https://messenger-module1.netlify.app/src/pages/error500/)
+- Хостинг проекта выполнен на `Netlify`  [Мессенджер](https://messenger-module1.netlify.app)  

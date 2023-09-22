@@ -81,6 +81,17 @@ abstract class Block {
     });
   }
 
+	_removeEvents() {
+		const { events = {} } = this.props  as { events: Record<string, () => void>};
+		if (!events) {
+			return;
+		}
+
+		Object.keys(events).forEach((event) => {
+			this._element!.removeEventListener(event, events[event]);
+		});
+	}
+
   _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.Events.INIT, this._init.bind(this));
     eventBus.on(Block.Events.FLOW_CMD, this._componentDidMount.bind(this));
@@ -142,6 +153,7 @@ abstract class Block {
 
     //to rewrite content
     if (this._element) {
+			this._removeEvents();
       this._element.replaceWith(newElem);
     }
     this._element = newElem;
