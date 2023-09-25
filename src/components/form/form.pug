@@ -1,11 +1,1 @@
-include ../input/input.pug
-include ../btn-main/btn-main.pug
-mixin form(id, action, formTitle, fieldsList, link, toLink)
-    form(id=id action=action class="form")
-        h3(class="form__title") #{formTitle}
-        each field in fieldsList 
-            +input(field.type, field.name, id, field.placeholder)
-                if(field.type=== "password" || field.placeholder=== "Логин")
-                    span(class="input-error")
-        +btn-main("Зарегистрироваться")
-        a(class="form__link-to-action" href=toLink) #{link}
+form(class= className metod= method id= id action= action)

@@ -1,9 +1,5 @@
-include ../input/input.pug
-mixin modal-input(modalTitle, formId, btnValue)
-    div(class="modal-container")
-        div(class="modal")
-            h3(class="modal__title chat-modal-title") #{modalTitle}
-            form(class="modal__form chat-modal-form" id=formId)
-                +input("text", "login", formId=formId, "Логин", "chat-modal-label")
-                button(type="submit" class="btn-main chat-modal-btn") #{btnValue}
+div(class="modal-container" id= id)
+	#{modal}
+		h3(class="modal__title chat-modal-title") #{modalTitle}
+		#{formModalInput}
 

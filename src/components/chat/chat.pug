@@ -1,12 +1,10 @@
-include ../avatar/avatar.pug
-mixin chat(avatarSrc, name="Alex", messagePre="Smth esle i wrote", time="10:23", unreadNum=2)
-    div(class="chats__item")
-        +avatar(avatarSrc, "chats__item-avatar")
-        div(class="chats__item-preview")
-            div(class="chats__item-info")
-                p(class="chats__item-name") #{name} 
-                p(class="chats__item-time") #{time}
-            div(class="chats__item-info")
-                p(class="chats__item-message-preview") #{messagePre} 
-                if(unreadNum > 0)
-                    p(class="chats__item-unread-number") #{unreadNum}
+div(class="chats__item")
+	#{avatar}
+	div(class="chats__item-preview")
+		div(class="chats__item-info")
+			p(class="chats__item-name") #{name} 
+			p(class="chats__item-time") #{time}
+		div(class="chats__item-info")
+			p(class="chats__item-message-preview") #{messagePre} 
+			if(unreadNum > 0)
+				p(class="chats__item-unread-number") #{unreadNum}
