@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 import { HOST } from "../js/const"
 
+=======
+>>>>>>> sprint_2
 enum HTTPMETHODS {
     GET = "GET",
     POST = "POST",
@@ -23,6 +26,7 @@ function queryStringify(data: {key: string, value: string}): string {
 
 type Options = {
     method?: HTTPMETHODS;
+<<<<<<< HEAD
     headers?: string[]; // eslint-disable-line
     data?: any; // eslint-disable-line
     timeout?: number;
@@ -47,20 +51,52 @@ export class HTTPTransport {
   post = (url: string, options: Options) => this.request(
     url,
     { ...options, method: HTTPMETHODS.POST }
+=======
+    headers?: any; // eslint-disable-line
+    data?: any; // eslint-disable-line
+    timeout?: number
+}
+
+export class HTTPTransport {
+  get = (url: string, options: Options = {}) => this.request(
+    url,
+    { ...options, method: HTTPMETHODS.GET },
+    options.timeout,
+  );
+
+  post = (url: string, options: Options = {}) => this.request(
+    url,
+    { ...options, method: HTTPMETHODS.POST },
+    options.timeout,
+>>>>>>> sprint_2
   );
 
   put = (url: string, options: Options = {}) => this.request(
     url,
+<<<<<<< HEAD
     { ...options, method: HTTPMETHODS.PUT }
+=======
+    { ...options, method: HTTPMETHODS.PUT },
+    options.timeout,
+>>>>>>> sprint_2
   );
 
   delete = (url: string, options: Options = {}) => this.request(
     url,
+<<<<<<< HEAD
     { ...options, method: HTTPMETHODS.DELETE }
   );
   // eslint-disable-next-line
   private request = (url: string, options: Options = {}) => {
     const { data, headers, method, signal, timeout = 60000, withCredentials = true, responseType = "json" } = options;
+=======
+    { ...options, method: HTTPMETHODS.DELETE },
+    options.timeout,
+  );
+  // eslint-disable-next-line
+  request = (url: string, options: Options = {}, timeout = 5000) => {
+    const { headers = {}, method, data } = options;
+>>>>>>> sprint_2
 
     return new Promise((resolve, reject) => {
       //if other method exept those upwards
@@ -76,6 +112,7 @@ export class HTTPTransport {
 
       //headers
       // eslint-disable-next-line
+<<<<<<< HEAD
       // for (const key in headers) {
       //   xhr.setRequestHeader(key, headers[key]);
       // }
@@ -110,16 +147,37 @@ export class HTTPTransport {
 			xhr.withCredentials = withCredentials;
 			xhr.responseType = responseType;
       
+=======
+      for (const key in headers) {
+        xhr.setRequestHeader(key, headers[key]);
+      }
+
+      xhr.onload = () => {
+        resolve(xhr);
+      };
+
+      xhr.onabort = reject;
+      xhr.onerror = reject;
+
+      xhr.timeout = timeout;
+      xhr.ontimeout = reject;
+>>>>>>> sprint_2
 
 
       if (method === HTTPMETHODS.GET || !data) {
         xhr.send();
+<<<<<<< HEAD
       } else if (data instanceof FormData) {
         xhr.send(data);
       } else {
 				xhr.setRequestHeader("Content-Type", "application/json");
 				xhr.send(JSON.stringify(data));
 			}
+=======
+      } else {
+        xhr.send(data);
+      }
+>>>>>>> sprint_2
     });
   };
 }

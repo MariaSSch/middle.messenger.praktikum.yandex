@@ -1,4 +1,3 @@
-mixin simple-field(labelTitle, inputType, fieldName, formId, fieldValue)
-    div(class="profile__fields")
-        label(class="profile__field") #{labelTitle}
-        input(class="profile__field-value" type=inputType, name=fieldName, form=formId value=fieldValue) 
+div(class="profile__simple-fields")
+	p(class="profile__simple-field") #{fieldTitle}
+	p(class="profile__simple-field-value") #{fieldValue}

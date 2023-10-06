@@ -1,0 +1,21 @@
+div(class="chats")
+	div(class="chats__aside")
+		nav(class="chats__to-profile")
+			#{link}
+		#{formSearch}
+			#{input}
+			img(src="/imgs/search_sign.png" class="chats__search-sign")
+		div(class="chats__list")
+			if (chatListLength === 0)
+				p(class="chats__none") Вы ещё никого не пригласили
+			else
+				#{chatOne}
+				#{chatTwo}
+				#{chatThree}
+	div(class="chats__chat-view")
+		if(isChatSelected)
+			#{chatHeader}
+			#{chatContent}
+			#{chatFooter}
+		else 
+			p(class="chats__none") Выберите чат чтобы отправить сообщение
