@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { EventBus } from "./event-bus";
 
-abstract class Block {
+class Block {
   static Events = {
     INIT: "init",
     FLOW_CMD: "flow: component-did-mount",

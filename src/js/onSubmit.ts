@@ -16,5 +16,6 @@ export function onSubmit(this: Form) {
       result[name] = formData;
     }
   }
+	return result;
   console.log(result);
 }

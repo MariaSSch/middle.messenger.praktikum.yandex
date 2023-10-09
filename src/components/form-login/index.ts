@@ -8,6 +8,7 @@ import { render } from "../../js/render";
 import * as validate from "../../js/form-validation";
 import { Form } from "../form";
 import { onSubmit } from "../../js/onSubmit";
+import authController from "../../controllers/auth-controller";
 
 interface FormProps {
 	// formId: string;
@@ -22,8 +23,10 @@ export class FormLogin extends Block {
       events: {
         submit: (e: Event) => {
           if (validate.isFormValid(e)) {
-            onSubmit.call(this);
-            render("chats");
+            ; //??
+            // render("chats");
+						authController.signin(onSubmit.call(this));
+						
           } else {
             e.preventDefault();
             e.stopImmediatePropagation();
